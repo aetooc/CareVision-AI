@@ -1,0 +1,28 @@
+# Core
+streamlit>=1.35.0
+
+# Speech recognition
+openai-whisper>=20231117
+
+# Vision
+opencv-python>=4.9.0
+moviepy>=1.0.3
+
+# ML / data science
+scikit-learn>=1.4.0
+pandas>=2.2.1
+numpy>=1.26.0
+torch>=2.0.0          # required by Whisper; use torch-cpu variant for lighter installs
+
+# LangChain orchestration
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-anthropic>=0.1.15
+langchain-community>=0.2.0
+
+# Vector store
+chromadb>=0.5.0
+sentence-transformers>=2.5.1
+
+# Env / utilities
+python-dotenv>=1.0.0

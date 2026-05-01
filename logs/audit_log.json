@@ -1,0 +1,1202 @@
+[
+  {
+    "timestamp": "2026-05-01T19:46:43.834367",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:46:44.554842",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:47:08.587043",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:47:12.190015",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:47:12.210355",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:26.312776",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:49:27.060692",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:38.282049",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:41.521873",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:41.532577",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:41.545932",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "Passed: 798 chars, 61 frames, 10725198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:41.558978",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "LangChain prompt constructed for clinical summarization."
+  },
+  {
+    "timestamp": "2026-05-01T19:49:41.570520",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Clinical JSON summary generated successfully."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:01.127666",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript embeddings stored in ChromaDB (ID: doc_patient_87ef7c81)."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:23.784069",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:50:24.506988",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:33.298592",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:35.829292",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:35.840429",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:35.854628",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "Passed: 798 chars, 61 frames, 10725198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:35.869231",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "LangChain prompt constructed for clinical summarization."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:35.879897",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Clinical JSON summary generated successfully."
+  },
+  {
+    "timestamp": "2026-05-01T19:50:36.176131",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript embeddings stored in ChromaDB (ID: doc_patient_87ef7c81)."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:08.353158",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:54:09.061616",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:21.462350",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:26.334895",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:26.362906",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:26.395135",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "Passed: 798 chars, 61 frames, 10725198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:26.427865",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "LangChain prompt constructed for clinical summarization."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:26.449549",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Clinical JSON summary generated successfully."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:29.710155",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript embeddings stored in ChromaDB (ID: doc_patient_9524e849)."
+  },
+  {
+    "timestamp": "2026-05-01T19:54:57.897713",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:54:58.868578",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:16.397796",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:20.697598",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:20.724094",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:20.750300",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "Passed: 798 chars, 61 frames, 10725198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:20.772532",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "LangChain prompt constructed for clinical summarization."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:20.791614",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Clinical JSON summary generated successfully."
+  },
+  {
+    "timestamp": "2026-05-01T19:55:21.366562",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript embeddings stored in ChromaDB (ID: doc_patient_9524e849)."
+  },
+  {
+    "timestamp": "2026-05-01T19:57:52.064547",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Started processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T19:57:53.708154",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track successfully extracted from video."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:10.781594",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Audio transcribed successfully. Length: 798 chars."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:15.672475",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames from video at 1 FPS."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:15.698559",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Vision heuristics applied to extracted frames."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:15.727472",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "Passed: 798 chars, 61 frames, 10725198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:15.754568",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "LangChain prompt constructed for clinical summarization."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:15.782911",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Clinical JSON summary generated successfully."
+  },
+  {
+    "timestamp": "2026-05-01T19:58:16.307524",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript embeddings stored in ChromaDB (ID: doc_patient_62b67aec)."
+  },
+  {
+    "timestamp": "2026-05-01T19:59:01.717322",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "DELETED: Vector embeddings for patient patient_62b67aec removed from ChromaDB."
+  },
+  {
+    "timestamp": "2026-05-01T19:59:01.727289",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "PURGED: All files securely removed from /data/uploads/."
+  },
+  {
+    "timestamp": "2026-05-01T19:59:01.747985",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "PURGED: All files securely removed from /data/transcripts/."
+  },
+  {
+    "timestamp": "2026-05-01T19:59:01.794617",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "PURGED: All files securely removed from /data/frames/."
+  },
+  {
+    "timestamp": "2026-05-01T19:59:01.808552",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right to be Forgotten executed completely for patient patient_62b67aec."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:15.422167",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: WhatsApp Video 2026-05-01 at 10.38.18 PM.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T20:27:16.426008",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:34.716673",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 801 chars."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:48.906654",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 61 frames at 1 FPS (video: 60.8s)."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:49.174493",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=114.3, faces=1.25, anomalies=6."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:49.190010",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=801 chars, frames=61, audio=10,725,198 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:49.206532",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Running in demo mode \u2013 no API key detected."
+  },
+  {
+    "timestamp": "2026-05-01T20:27:51.377791",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_17014018)."
+  },
+  {
+    "timestamp": "2026-05-01T20:28:56.092371",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Vector embeddings removed for patient patient_17014018."
+  },
+  {
+    "timestamp": "2026-05-01T20:28:56.099929",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/uploads/."
+  },
+  {
+    "timestamp": "2026-05-01T20:28:56.114381",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/transcripts/."
+  },
+  {
+    "timestamp": "2026-05-01T20:28:56.157280",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/frames/."
+  },
+  {
+    "timestamp": "2026-05-01T20:28:56.168791",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right-to-be-Forgotten executed for patient patient_17014018."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:46.681537",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T20:36:48.185770",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:53.002049",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:57.222987",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:57.460333",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:57.476083",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:57.491413",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Running in demo mode \u2013 no API key detected."
+  },
+  {
+    "timestamp": "2026-05-01T20:36:57.952711",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_0f8ad04d)."
+  },
+  {
+    "timestamp": "2026-05-01T20:37:59.450036",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 3 results for query."
+  },
+  {
+    "timestamp": "2026-05-01T20:38:18.407470",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results for query."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:10.194039",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:06:11.768506",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:20.963139",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:24.128413",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:24.364364",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:24.378149",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:24.394222",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:06:26.516567",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_30931c3c)."
+  },
+  {
+    "timestamp": "2026-05-01T21:14:51.919766",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:14:52.442913",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:14:59.975974",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:15:02.975913",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:15:03.274519",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:15:03.292050",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:15:03.311003",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:15:05.072648",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_6aec4b14)."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:27.972168",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:23:28.615100",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:37.933384",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:42.612060",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:43.154300",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:43.188017",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:43.216445",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:23:46.046828",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_491a71a5)."
+  },
+  {
+    "timestamp": "2026-05-01T21:25:49.832002",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:25:50.353293",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:25:59.589402",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:26:03.718743",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:26:03.987672",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:26:04.008545",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:26:04.027181",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:26:06.221042",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_a513c3af)."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:00.603563",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:30:01.151430",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:10.447721",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:15.294843",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:15.661339",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:15.681875",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:15.701551",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:30:18.110485",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_670797c9)."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:39.294597",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:34:39.741939",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:47.202740",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:50.062987",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:50.261997",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:50.275775",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:50.288119",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:34:52.020840",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_e9bc3021)."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:15.590329",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:40:16.041899",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:23.678171",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:26.372461",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:26.636379",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:26.651922",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:30.225433",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "LangChain chain failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:40:30.259695",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:32.144533",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_ab4ac61c)."
+  },
+  {
+    "timestamp": "2026-05-01T21:40:43.668516",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: 'Input to ChatPromptTemplate is missing variables {\\'\\\\n  \"symptoms\"\\', \\'\\\\n  \"frames_analyzed\"\\'}.  Expected: [\\'\\\\n  \"frames_analyzed\"\\', \\'\\\\n  \"symptoms\"\\'] Received: []\\nNote: if you intended {\\n  \"symptoms\"} to be part of the string and not a variable, please escape it with double curly braces like: \\'{{\\n  \"symptoms\"}}\\'.\\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/INVALID_PROMPT_INPUT '"
+  },
+  {
+    "timestamp": "2026-05-01T21:45:24.409847",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:45:25.041283",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:35.488968",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:39.315045",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:39.600244",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:39.619052",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:42.868859",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "LangChain chain failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:45:42.911265",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:44.923417",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_dbe7c8f9)."
+  },
+  {
+    "timestamp": "2026-05-01T21:45:55.077347",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:48:19.012174",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:48:19.687338",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:48:30.662303",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:48:37.119764",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:48:37.743886",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:48:37.781700",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:49:17.754317",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "LangChain chain failed: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 42.184519233s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '42s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:49:17.770853",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:49:19.533149",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_ba104e11)."
+  },
+  {
+    "timestamp": "2026-05-01T21:50:06.854706",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\nPlease retry in 53.106782205s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '53s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:50:16.471753",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 43.469888329s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '43s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:50:38.416236",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 21.528728936s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '21s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:50:42.632838",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 17.324810621s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '17s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:50:43.637005",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 16.308654812s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:51:57.492533",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:51:57.966822",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:06.848895",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T21:52:07.868678",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:09.412045",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:15.696458",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:20.775169",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:21.060618",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:21.084928",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T21:52:59.705063",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "LangChain chain failed: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\nPlease retry in 230.950697ms.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '0s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:52:59.732030",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set GOOGLE_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T21:53:01.912467",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_55647cf6)."
+  },
+  {
+    "timestamp": "2026-05-01T21:53:48.137676",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\nPlease retry in 11.797662889s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '11s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T21:53:54.493690",
+    "action_type": "ERROR",
+    "status": "FAILED",
+    "details": "Chat agent error: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\\nPlease retry in 5.447750191s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '5s'}]}}"
+  },
+  {
+    "timestamp": "2026-05-01T22:08:02.427319",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T22:08:03.029086",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:15.281504",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:20.419137",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:20.774923",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:20.800630",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:20.828720",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Demo mode - set MISTRAL_API_KEY for live inference."
+  },
+  {
+    "timestamp": "2026-05-01T22:08:23.769428",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_b88a2b9a)."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:04.981943",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-01T22:13:05.526139",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:14.032921",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:17.024975",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:17.275475",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:17.292726",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:18.988960",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:20.919559",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_9a56e62f)."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:36.236797",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:46.543700",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-01T22:13:51.172334",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 3 answered."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:05.110868",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 2 results for query."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:24.779938",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Vector embeddings removed for patient patient_9a56e62f."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:24.789530",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/uploads/."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:24.805818",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/transcripts/."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:24.826605",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/frames/."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:24.840638",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right-to-be-Forgotten executed for patient patient_9a56e62f."
+  },
+  {
+    "timestamp": "2026-05-01T22:14:36.232513",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 2 results for query."
+  }
+]
