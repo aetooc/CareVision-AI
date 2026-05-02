@@ -2908,5 +2908,41 @@
     "action_type": "DATA_STORAGE",
     "status": "SUCCESS",
     "details": "Transcript upserted in ChromaDB (id=doc_patient_36c9337b)."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:04.527936",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Video saved for patient_3fbf3025."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:06.986595",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:07.195149",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=144.0, faces=2.38, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:07.662806",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:16.696883",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 123 chars."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:16.780320",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=123 chars, frames=8, audio=1,411,278 bytes."
   }
 ]
