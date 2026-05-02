@@ -301,43 +301,43 @@ with tab_dspy:
                 st.success("No significant risk flags detected.")
 
         # ── Debug Panel ──────────────────────────────────────────────────────────
-        st.divider()
-        with st.expander("🛠️ DSPy Debug Panel", expanded=not dspy_result.get("dspy_active", False)):
-            fallback_reason = dspy_result.get("debug_fallback_reason", "")
-            trace = dspy_result.get("debug_trace", [])
+        # st.divider()
+        # with st.expander("🛠️ DSPy Debug Panel", expanded=not dspy_result.get("dspy_active", False)):
+        #     fallback_reason = dspy_result.get("debug_fallback_reason", "")
+        #     trace = dspy_result.get("debug_trace", [])
 
-            if dspy_result.get("dspy_active"):
-                st.success("✅ DSPy is running in **live mode** via Mistral API.")
-            else:
-                st.error("⚠️ DSPy fell back to **heuristic/demo mode**.")
+        #     if dspy_result.get("dspy_active"):
+        #         st.success("✅ DSPy is running in **live mode** via Mistral API.")
+        #     else:
+        #         st.error("⚠️ DSPy fell back to **heuristic/demo mode**.")
 
-                if fallback_reason:
-                    st.markdown("**Root cause:**")
-                    st.code(fallback_reason, language=None)
+        #         if fallback_reason:
+        #             st.markdown("**Root cause:**")
+        #             st.code(fallback_reason, language=None)
 
-            if trace:
-                st.markdown("**Stage-by-stage trace:**")
-                STATUS_COLOUR = {"ok": "#2d6a4f", "warn": "#b5830a", "error": "#9b2226"}
-                STATUS_ICON   = {"ok": "✅", "warn": "⚠️", "error": "❌"}
-                for entry in trace:
-                    colour = STATUS_COLOUR.get(entry["status"], "#555")
-                    icon   = STATUS_ICON.get(entry["status"], "•")
-                    detail_html = (
-                        "<pre style='color:#ff8585;font-size:0.78rem;"
-                        "margin-top:4px;white-space:pre-wrap;'>"
-                        + entry["detail"] + "</pre>"
-                    ) if entry.get("detail") else ""
-                    st.markdown(
-                        f"<div style='border-left:3px solid {colour};padding:6px 10px;"
-                        f"margin-bottom:6px;background:#111;border-radius:0 6px 6px 0;'>"
-                        f"<span style='color:{colour};font-weight:700;'>{icon} [{entry['stage']}]</span> "
-                        f"<span style='color:#ccc;font-size:0.88rem;'>{entry['message']}</span>"
-                        f"{detail_html}"
-                        f"</div>",
-                        unsafe_allow_html=True,
-                    )
-            else:
-                st.caption("No trace data available — run the pipeline first.")
+        #     if trace:
+        #         st.markdown("**Stage-by-stage trace:**")
+        #         STATUS_COLOUR = {"ok": "#2d6a4f", "warn": "#b5830a", "error": "#9b2226"}
+        #         STATUS_ICON   = {"ok": "✅", "warn": "⚠️", "error": "❌"}
+        #         for entry in trace:
+        #             colour = STATUS_COLOUR.get(entry["status"], "#555")
+        #             icon   = STATUS_ICON.get(entry["status"], "•")
+        #             detail_html = (
+        #                 "<pre style='color:#ff8585;font-size:0.78rem;"
+        #                 "margin-top:4px;white-space:pre-wrap;'>"
+        #                 + entry["detail"] + "</pre>"
+        #             ) if entry.get("detail") else ""
+        #             st.markdown(
+        #                 f"<div style='border-left:3px solid {colour};padding:6px 10px;"
+        #                 f"margin-bottom:6px;background:#111;border-radius:0 6px 6px 0;'>"
+        #                 f"<span style='color:{colour};font-weight:700;'>{icon} [{entry['stage']}]</span> "
+        #                 f"<span style='color:#ccc;font-size:0.88rem;'>{entry['message']}</span>"
+        #                 f"{detail_html}"
+        #                 f"</div>",
+        #                 unsafe_allow_html=True,
+        #             )
+        #     else:
+        #         st.caption("No trace data available — run the pipeline first.")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # TAB 3 — CHAT AGENT
