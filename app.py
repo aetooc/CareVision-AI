@@ -1,410 +1,395 @@
-import streamlit as st
 import os
-import json
-import uuid
+import streamlit as st
 
-from pipeline.audio import process_audio
-from pipeline.video import process_video_frames
-from pipeline.validation import validate_data
-from pipeline.agent import generate_clinical_summary, ClinicalChatAgent
-from pipeline.storage import get_patient_dirs, store_embeddings, semantic_search, execute_right_to_be_forgotten
-from pipeline.logging_utils import log_action
-from pipeline.voice import render_voice_chat_ui
-
-# ── Paths ──────────────────────────────────────────────────────────────────────
-BASE_DIR       = os.path.dirname(os.path.abspath(__file__))
-LOGS_DIR       = os.path.join(BASE_DIR, "logs")
-AUDIT_LOG_FILE = os.path.join(LOGS_DIR, "audit_log.json")
-
-os.makedirs(LOGS_DIR, exist_ok=True)
-
-if not os.path.exists(AUDIT_LOG_FILE):
-    with open(AUDIT_LOG_FILE, "w") as f:
-        json.dump([], f)
-
-# ── Page config & custom CSS ───────────────────────────────────────────────────
 st.set_page_config(
-    page_title="CareVision AI · DEEM Lab",
+    page_title="CareVision AI",
     page_icon="🏥",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="expa nded",
 )
 
-st.markdown("""
-<style>
-/* ── Fonts & palette ──────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-:root {
-    --primary: #0d5c6b;
-    --accent:  #00c2a8;
-    --warn:    #e05c2f;
-    --bg:      #f5f7f8;
-    --card:    #ffffff;
-    --border:  #d6dde2;
-    --text:    #1a2730;
-    --muted:   #5a7080;
-}
+for key in ("MISTRAL_API_KEY",):
+    if key in st.secrets and not os.getenv(key):
+        os.environ[key] = st.secrets[key]
 
-html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: var(--text); }
+from pipeline.session      import (
+    init_session, render_session_controls, get_patient_id,
+    mark_upload_done,
+    KEY_PIPELINE_RESULT, KEY_AGENT, KEY_CHAT_MESSAGES, KEY_DSPY_RESULT,
+)
+from pipeline.storage      import get_patient_dirs, store_embeddings, semantic_search, execute_right_to_be_forgotten
+from pipeline.audio        import process_audio
+from pipeline.video        import process_video_frames
+from pipeline.validation   import validate_data
+from pipeline.agent        import generate_clinical_summary, ClinicalChatAgent
+from pipeline.dspy_module  import run_dspy_analysis, format_severity_badge
+from pipeline.logging_utils import log_action
+from pipeline.voice        import render_voice_chat_ui, synthesize_speech
 
-/* Header strip */
-.cv-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #0a3e4a 100%);
-    padding: 1.6rem 2rem 1.3rem;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-}
-.cv-header h1 {
-    font-family: 'DM Serif Display', serif;
-    color: #ffffff;
-    font-size: 2rem;
-    margin: 0;
-    letter-spacing: -0.5px;
-}
-.cv-header p { color: rgba(255,255,255,0.72); margin: 0; font-size: 0.88rem; font-weight: 300; }
-.cv-badge {
-    background: rgba(0,194,168,0.18);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    border-radius: 20px;
-    padding: 3px 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.73rem;
-    white-space: nowrap;
-}
+init_session()
 
-/* Cards */
-.cv-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1rem;
-    color: inherit;
-}
-.cv-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin: 0 0 .6rem; color: inherit; }
-
-/* Metric chips */
-.metric-row { display: flex; gap: .7rem; flex-wrap: wrap; margin: .8rem 0; }
-.metric-chip {
-    background: rgba(0,194,168,0.1);
-    border: 1px solid rgba(0,194,168,0.25);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 0.82rem;
-    font-family: 'DM Mono', monospace;
-    color: inherit;
-}
-.metric-chip span { color: var(--accent); font-weight: 600; }
-
-/* Audit log entries */
-.log-success { border-left: 3px solid var(--accent); padding: .4rem .8rem; margin:.3rem 0; font-size:.8rem; font-family:'DM Mono',monospace; background:rgba(0,194,168,0.08); border-radius:0 6px 6px 0; color:inherit; }
-.log-delete  { border-left: 3px solid var(--warn);   padding: .4rem .8rem; margin:.3rem 0; font-size:.8rem; font-family:'DM Mono',monospace; background:rgba(224,92,47,0.08); border-radius:0 6px 6px 0; color:inherit; }
-.log-error   { border-left: 3px solid #e05c2f;       padding: .4rem .8rem; margin:.3rem 0; font-size:.8rem; font-family:'DM Mono',monospace; background:rgba(224,92,47,0.08); border-radius:0 6px 6px 0; color:inherit; }
-
-/* Session ID pill */
-.session-pill {
-    display: inline-block;
-    background: rgba(0,194,168,0.12);
-    border: 1px solid rgba(0,194,168,0.3);
-    border-radius: 20px;
-    padding: 3px 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: .78rem;
-    color: var(--accent);
-    margin-bottom: .8rem;
-}
-
-/* Chat bubbles */
-.bubble-user { background:#0d5c6b; color:#fff; border-radius:16px 16px 4px 16px; padding:.7rem 1rem; margin:.4rem 0 .4rem auto; max-width:80%; font-size:.9rem; }
-.bubble-ai   { background:#f0f4f5; color:var(--text); border-radius:16px 16px 16px 4px; padding:.7rem 1rem; margin:.4rem auto .4rem 0; max-width:80%; font-size:.9rem; }
-</style>
-""", unsafe_allow_html=True)
-
-# ── Session state ──────────────────────────────────────────────────────────────
-def _init_state():
-    defaults = {
-        "patient_id": "patient_" + str(uuid.uuid4())[:8],
-        "pipeline_result": None,
-        "chat_agent": None,
-        "chat_history": [],
-        "upload_key": 0,           # increment to reset the file_uploader widget
-    }
-    for k, v in defaults.items():
-        if k not in st.session_state:
-            st.session_state[k] = v
-
-_init_state()
-
-# ── Header ─────────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="cv-header">
-  <div>
-    <h1>🏥 CareVision AI</h1>
-    <p>Privacy-preserving multimodal clinical pipeline · DEEM Lab, Berlin</p>
-  </div>
-  <div class="cv-badge">GDPR Art. 17 Compliant</div>
-  <div class="cv-badge">LangChain · Whisper · ChromaDB</div>
-</div>
-""", unsafe_allow_html=True)
-
-# ── Sidebar — audit log ────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+# SIDEBAR
+# ══════════════════════════════════════════════════════════════════════════════
 with st.sidebar:
-    st.markdown("### 📋 Audit Log")
-    st.markdown(f'<div class="session-pill">🔑 {st.session_state.patient_id}</div>', unsafe_allow_html=True)
+    st.markdown("## 📋 Audit Log")
+
+    # Patient session controls (new widget)
+    render_session_controls()
+
+    # Audit log display
+    from pipeline.logging_utils import AUDIT_LOG_FILE
+    import json
 
     try:
-        with open(AUDIT_LOG_FILE) as f:
+        with open(AUDIT_LOG_FILE, "r") as f:
             logs = json.load(f)
-        if logs:
-            for entry in reversed(logs[-20:]):
-                ts   = entry["timestamp"][11:19]
-                atype = entry["action_type"]
-                det  = entry["details"][:60]
-                if "DELETION" in atype or "COMPLIANCE" in atype:
-                    css = "log-delete"
-                elif "ERROR" in atype or "FAIL" in entry.get("status", ""):
-                    css = "log-error"
-                else:
-                    css = "log-success"
-                st.markdown(f'<div class="{css}"><b>{ts}</b> {atype}<br>{det}</div>', unsafe_allow_html=True)
-        else:
-            st.caption("No logs yet.")
     except Exception:
-        st.caption("Log file initialising…")
+        logs = []
 
-    st.divider()
-    st.markdown("**Tech Stack**")
-    st.markdown("""
-- 🎙️ OpenAI Whisper (ASR)
-- 👁️ OpenCV + scikit-learn (vision)
-- 🦜 LangChain LCEL (orchestration)
-- 🗄️ ChromaDB (vector store)
-- 🔒 GDPR Art. 17 deletion pipeline
-""")
+    patient_id = get_patient_id()
 
-# ── Tabs ───────────────────────────────────────────────────────────────────────
-tab_video, tab_chat, tab_voice, tab_search, tab_delete = st.tabs([
+    # Filter to current patient if logs exist
+    patient_logs = [l for l in logs if patient_id in l.get("details", "")]
+    if not patient_logs:
+        patient_logs = logs[-20:]  # show last 20 global if no patient match
+
+    st.markdown(
+        f"<div style='background:#1a1a2e;border:1px solid #2d6a4f;"
+        f"border-radius:6px;padding:6px 10px;margin-bottom:6px;'>"
+        f"<code style='color:#74c69d;font-size:11px;'>{patient_id}</code>"
+        f"<span style='color:#6c757d;font-size:10px;'> · {len(patient_logs)} events</span>"
+        f"</div>",
+        unsafe_allow_html=True,
+    )
+
+    ACTION_COLOURS = {
+        "COMPLIANCE_SUCCESS": "#2d6a4f",
+        "DATA_DELETION":      "#9b2226",
+        "VALIDATION_ERROR":   "#9b2226",
+        "ERROR":              "#9b2226",
+        "AI_PROCESSING":      "#1d4e89",
+        "DATA_EXTRACTION":    "#495057",
+        "DATA_STORAGE":       "#495057",
+        "DATA_VALIDATION":    "#495057",
+        "DSPY_ANALYSIS":      "#5c4d7d",
+        "VOICE_TTS":          "#4a4e69",
+        "VOICE_STT":          "#4a4e69",
+        "CHAT_AGENT":         "#2b4162",
+    }
+
+    for entry in reversed(patient_logs[-30:]):
+        colour = ACTION_COLOURS.get(entry["action_type"], "#333")
+        st.markdown(
+            f"""<div style="border-left:3px solid {colour};
+                padding:6px 8px;margin-bottom:4px;background:#1a1a1a;
+                border-radius:0 4px 4px 0;">
+                <span style="color:#adb5bd;font-size:10px;">
+                    {entry['timestamp'][11:19]}</span>
+                <span style="color:#e9ecef;font-size:10px;font-weight:600;">
+                    &nbsp;{entry['action_type']}</span><br/>
+                <span style="color:#6c757d;font-size:10px;">
+                    {entry['details'][:80]}</span>
+            </div>""",
+            unsafe_allow_html=True,
+        )
+
+# ══════════════════════════════════════════════════════════════════════════════
+# HEADER
+# ══════════════════════════════════════════════════════════════════════════════
+st.markdown(
+    """
+    <div style="background:linear-gradient(135deg,#0d4f4f,#0a3a3a);
+         padding:24px 32px;border-radius:12px;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="margin:0;color:#ffffff;font-size:2rem;">🏥 CareVision AI</h1>
+          <p style="margin:4px 0 0;color:#a8d8d8;font-size:0.95rem;">
+            Privacy-preserving multimodal clinical pipeline · DEEM Lab, Berlin
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#0a5c5c;color:#7dffd6;padding:4px 12px;
+                border-radius:20px;font-size:12px;font-weight:600;border:1px solid #1a8a8a;">
+            GDPR Art. 17 Compliant</span>
+          <span style="background:#0a3a5c;color:#7dc8ff;padding:4px 12px;
+                border-radius:20px;font-size:12px;font-weight:600;border:1px solid #1a6a9a;">
+            LangChain · Whisper · ChromaDB</span>
+          <span style="background:#3a0a5c;color:#d4a7ff;padding:4px 12px;
+                border-radius:20px;font-size:12px;font-weight:600;border:1px solid #7a2aaa;">
+            DSPy ChainOfThought</span>
+        </div>
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# TABS
+# ══════════════════════════════════════════════════════════════════════════════
+tab_intake, tab_dspy, tab_chat, tab_voice, tab_search, tab_delete = st.tabs([
     "📹 Video Intake",
+    "🧠 DSPy Analysis",
     "💬 Chat Agent",
     "🎙️ Voice Chat",
     "🔍 Semantic Search",
-    "🗑️  Data Deletion",
+    "🗑️ Data Deletion",
 ])
 
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 1 — VIDEO INTAKE
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_intake:
+    col_left, col_right = st.columns([1, 1], gap="large")
 
-# ════════════════════════════════════════════════════════════════════════════════
-# TAB 1 — Video Intake
-# ════════════════════════════════════════════════════════════════════════════════
-with tab_video:
-    col_upload, col_results = st.columns([1, 1], gap="large")
-
-    with col_upload:
-        st.markdown('<div class="cv-card"><h3>Upload Consultation Video</h3>', unsafe_allow_html=True)
-        uploaded = st.file_uploader(
-            "Accepts MP4 files",
+    with col_left:
+        st.markdown("### Upload Consultation Video")
+        uploaded_file = st.file_uploader(
+            label="",
             type=["mp4"],
-            label_visibility="collapsed",
-            key=f"video_upload_{st.session_state.upload_key}",
+            help="200MB per file · MP4",
+            key=f"uploader_{get_patient_id()}",   # key tied to patient so it resets
         )
+        if uploaded_file:
+            st.caption("_Upload an MP4 consultation video to begin. "
+                       "Video is processed locally and never transmitted externally._")
 
-        if uploaded:
-            # Resolve this patient's own directories (creates them if needed)
-            patient_dirs = get_patient_dirs(st.session_state.patient_id)
-            file_path = os.path.join(patient_dirs["uploads"], uploaded.name)
-            with open(file_path, "wb") as f:
-                f.write(uploaded.getbuffer())
-            st.video(file_path)
-            st.markdown('</div>', unsafe_allow_html=True)
+    with col_right:
+        pipeline_result = st.session_state.get(KEY_PIPELINE_RESULT)
 
-            if st.button("▶ Run Full Pipeline", type="primary", key="run_pipeline"):
-                log_action("PIPELINE_START", f"Processing video: {uploaded.name}")
-
-                with st.status("Running multimodal pipeline…", expanded=True) as status:
-                    st.write("🎙️ Extracting & transcribing audio (Whisper)…")
-                    transcript = process_audio(file_path, patient_dirs["transcripts"])
-
-                    st.write("🎞️ Extracting frames & running vision analysis (OpenCV + scikit-learn)…")
-                    vision = process_video_frames(file_path, patient_dirs["frames"])
-
-                    st.write("✅ Validating data quality…")
-                    audio_path = os.path.join(patient_dirs["transcripts"], "extracted_audio.wav")
-                    is_valid = validate_data(transcript, patient_dirs["frames"], audio_path)
-
-                    if is_valid:
-                        st.write("🦜 LangChain agent generating clinical summary…")
-                        summary = generate_clinical_summary(transcript, vision)
-                        store_embeddings(
-                            st.session_state.patient_id,
-                            transcript,
-                            {
-                                "frames": vision.get("frames_analyzed", 0),
-                                "video_filename": uploaded.name,
-                            },
-                        )
-                        st.session_state.pipeline_result = {
-                            "transcript": transcript,
-                            "vision": vision,
-                            "summary": summary,
-                        }
-                        context = (
-                            f"Transcript:\n{transcript}\n\n"
-                            f"Vision:\n{json.dumps(vision, indent=2)}\n\n"
-                            f"Summary:\n{json.dumps(summary, indent=2)}"
-                        )
-                        st.session_state.chat_agent = ClinicalChatAgent(context)
-                        status.update(label="Pipeline complete ✓", state="complete")
-                    else:
-                        status.update(label="Validation failed", state="error")
-                        st.error("Data validation failed — check the audit log for details.")
+        if not pipeline_result:
+            st.markdown(
+                "<div style='background:#0d1f2d;border:1px solid #1d4e89;"
+                "border-radius:8px;padding:24px;color:#6c9fc4;font-size:0.95rem;'>"
+                "Run the pipeline to see results here.<br/><br/>"
+                "<small style='color:#495057;'>Upload an MP4 above, then click "
+                "<strong>Run Pipeline</strong>.</small></div>",
+                unsafe_allow_html=True,
+            )
         else:
-            st.markdown("*Upload an MP4 consultation video to begin.*")
-            st.markdown('</div>', unsafe_allow_html=True)
+            summary = pipeline_result.get("clinical_summary", {})
+            st.markdown("#### 📊 Clinical Summary")
+            st.json(summary)
 
-    with col_results:
-        result = st.session_state.pipeline_result
-        if result:
-            st.markdown('<div class="cv-card"><h3>📊 Vision Analysis</h3>', unsafe_allow_html=True)
-            v = result["vision"]
-            st.markdown(f"""
-<div class="metric-row">
-  <div class="metric-chip">Frames <span>{v.get('frames_analyzed', '—')}</span></div>
-  <div class="metric-chip">Duration <span>{v.get('duration_seconds', '—')}s</span></div>
-  <div class="metric-chip">Avg brightness <span>{v.get('avg_brightness', '—')}</span></div>
-  <div class="metric-chip">Face presence <span>{v.get('avg_face_presence', '—')}</span></div>
-  <div class="metric-chip">Anomalies <span>{v.get('anomalous_frame_count', '—')}</span></div>
-</div>
-<p style="font-size:.85rem;color:#5a7080">{v.get('visual_flags','')}</p>
-<p style="font-size:.85rem"><b>Posture:</b> {v.get('posture_assessment','—')}</p>
-            """, unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+    # Run pipeline button
+    if uploaded_file:
+        if st.button("▶️  Run Pipeline", type="primary", use_container_width=True):
+            patient_id = get_patient_id()
+            dirs = get_patient_dirs(patient_id)
 
-            st.markdown('<div class="cv-card"><h3>🎙️ Transcript</h3>', unsafe_allow_html=True)
-            st.text_area("", result["transcript"], height=110, label_visibility="collapsed")
-            st.markdown('</div>', unsafe_allow_html=True)
+            # Save upload
+            video_path = os.path.join(dirs["uploads"], uploaded_file.name)
+            with open(video_path, "wb") as f:
+                f.write(uploaded_file.read())
+            log_action("DATA_EXTRACTION", f"Video saved for {patient_id}.")
 
-            st.markdown('<div class="cv-card"><h3>🤖 Agent Clinical Summary</h3>', unsafe_allow_html=True)
-            st.json(result["summary"])
-            st.markdown('</div>', unsafe_allow_html=True)
-        else:
-            st.info("Run the pipeline to see results here.")
+            with st.spinner("🎞️ Extracting video frames…"):
+                vision = process_video_frames(video_path, dirs["frames"])
 
+            with st.spinner("🎙️ Transcribing audio (Whisper)…"):
+                transcript = process_audio(video_path, dirs["transcripts"])
 
-# ════════════════════════════════════════════════════════════════════════════════
-# TAB 2 — Chat Agent
-# ════════════════════════════════════════════════════════════════════════════════
-with tab_chat:
-    st.markdown("### 💬 Ask the Clinical Agent")
-    st.caption("Query the processed patient record in natural language. Powered by LangChain + Mistral.")
+            audio_path = os.path.join(dirs["transcripts"], "extracted_audio.wav")
+            valid = validate_data(transcript, dirs["frames"], audio_path)
 
-    agent: ClinicalChatAgent | None = st.session_state.chat_agent
+            if not valid:
+                st.error("Validation failed — check the audit log.")
+            else:
+                with st.spinner("🤖 Generating clinical summary (LangChain + Mistral)…"):
+                    summary = generate_clinical_summary(transcript, vision)
 
-    if agent is None:
-        st.info("Process a video first to activate the chat agent.")
-    else:
-        # Render history
-        chat_container = st.container(height=380)
-        with chat_container:
-            for turn in st.session_state.chat_history:
-                st.markdown(f'<div class="bubble-user">{turn["human"]}</div>', unsafe_allow_html=True)
-                st.markdown(f'<div class="bubble-ai">{turn["ai"]}</div>', unsafe_allow_html=True)
+                with st.spinner("🧠 Running DSPy severity analysis…"):
+                    dspy_result = run_dspy_analysis(transcript, vision)
+                    st.session_state[KEY_DSPY_RESULT] = dspy_result
 
-        user_input = st.chat_input("Ask about symptoms, observations, follow-up…")
-        if user_input:
-            reply = agent.chat(user_input)
-            st.session_state.chat_history.append({"human": user_input, "ai": reply})
-            st.rerun()
+                store_embeddings(patient_id, transcript, metadata={
+                    "frames": vision.get("frames_analyzed", 0),
+                    "video":  uploaded_file.name,
+                })
 
-        col_a, col_b, col_c = st.columns(3)
-        for col, q in zip(
-            [col_a, col_b, col_c],
-            [
-                "What symptoms did the patient report?",
-                "Were there any visual risk flags?",
-                "What follow-up is recommended?",
-            ],
-        ):
-            with col:
-                if st.button(q, key=f"quick_{q[:10]}"):
-                    reply = agent.chat(q)
-                    st.session_state.chat_history.append({"human": q, "ai": reply})
-                    st.rerun()
+                result = {
+                    "transcript":       transcript,
+                    "vision_analysis":  vision,
+                    "clinical_summary": summary,
+                }
+                st.session_state[KEY_PIPELINE_RESULT] = result
 
+                # Build context string for chat agent
+                context = (
+                    f"Patient ID: {patient_id}\n"
+                    f"Transcript: {transcript[:800]}\n"
+                    f"Visual: {vision.get('visual_flags','')}\n"
+                    f"Posture: {vision.get('posture_assessment','')}\n"
+                    f"DSPy Severity: {dspy_result.get('severity','')}\n"
+                    f"DSPy Triage: {dspy_result.get('triage_priority','')}\n"
+                    f"Summary: {summary.get('summary','')}"
+                )
+                st.session_state[KEY_AGENT] = ClinicalChatAgent(context)
+                mark_upload_done()
 
-with tab_voice:
-    agent_for_voice: ClinicalChatAgent | None = st.session_state.chat_agent
-    if agent_for_voice is None:
-        st.info("Process a video first to activate voice chat.")
-    else:
-        render_voice_chat_ui(agent_for_voice)
+                st.success("✅ Pipeline complete! See DSPy Analysis tab for severity assessment.")
+                st.rerun()
 
-
-# ════════════════════════════════════════════════════════════════════════════════
-# TAB 3 — Semantic Search
-# ════════════════════════════════════════════════════════════════════════════════
-with tab_search:
-    st.markdown("### 🔍 Semantic Vector Search")
-    st.caption("Search across all stored transcripts using ChromaDB cosine similarity.")
-
-    query = st.text_input("Enter a clinical query:", placeholder="patient reports chest pain…")
-    n_results = st.slider("Max results", 1, 5, 3)
-
-    if st.button("Search", key="search_btn") and query:
-        with st.spinner("Querying ChromaDB…"):
-            hits = semantic_search(query, n_results)
-
-        if hits:
-            for i, h in enumerate(hits, 1):
-                with st.expander(f"Result {i} — patient: {h['metadata'].get('patient_id', '?')}"):
-                    st.write(h["document"][:400] + ("…" if len(h["document"]) > 400 else ""))
-                    st.json(h["metadata"])
-        else:
-            st.warning("No results found. Process a video first to populate the vector store.")
-
-
-# ════════════════════════════════════════════════════════════════════════════════
-# TAB 4 — Data Deletion
-# ════════════════════════════════════════════════════════════════════════════════
-with tab_delete:
-    st.markdown("### 🗑️ GDPR Article 17 — Right to be Forgotten")
-    st.markdown("""
-This pipeline executes a **verifiable, audited purge** of all patient data:
-
-| Layer | What gets deleted |
-|---|---|
-| **Vector DB** | ChromaDB embeddings for this patient ID |
-| **Audio** | Extracted WAV file from `/data/transcripts/` |
-| **Video frames** | All JPEG frames from `/data/frames/` |
-| **Source video** | Uploaded MP4 from `/data/uploads/` |
-| **Transcript** | Plain-text `.txt` from `/data/transcripts/` |
-
-Every deletion step is logged to the audit trail with a timestamp.
-    """)
-
-    st.error(
-        f"⚠️ This action is **irreversible**. Target: `{st.session_state.patient_id}`",
-        icon="🔴",
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 2 — DSPY ANALYSIS (new)
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_dspy:
+    st.markdown("### 🧠 DSPy Clinical Intelligence")
+    st.caption(
+        "Powered by DSPy `ChainOfThought` — the model's reasoning steps are "
+        "fully visible below for auditability."
     )
 
-    confirm = st.checkbox("I confirm I want to permanently delete all data for this patient.")
-    if confirm:
-        if st.button("Execute Right to be Forgotten", type="primary", key="delete_btn"):
-            with st.spinner("Executing compliance purge…"):
-                ok = execute_right_to_be_forgotten(st.session_state.patient_id)
+    dspy_result = st.session_state.get(KEY_DSPY_RESULT)
 
-            if ok:
-                st.success("✅ All patient data purged. Audit trail preserved.")
+    if not dspy_result:
+        st.info("Run the video intake pipeline first to see DSPy analysis.")
+    else:
+        severity  = dspy_result.get("severity", "unknown")
+        emoji, colour = format_severity_badge(severity)
+
+        # Severity banner
+        st.markdown(
+            f"""<div style="background:{colour}22;border:2px solid {colour};
+                border-radius:10px;padding:16px 24px;margin-bottom:16px;">
+                <span style="font-size:2rem;">{emoji}</span>
+                <span style="color:#ffffff;font-size:1.4rem;font-weight:700;
+                    margin-left:12px;text-transform:uppercase;">{severity} severity</span>
+                <br/>
+                <span style="color:#adb5bd;font-size:0.9rem;margin-left:4px;">
+                    {dspy_result.get('triage_priority','')}</span>
+            </div>""",
+            unsafe_allow_html=True,
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("#### 🔍 ChainOfThought Reasoning")
+            st.markdown(
+                f"<div style='background:#1a1a2e;border-radius:8px;padding:12px;"
+                f"color:#c5d8f0;font-size:0.9rem;line-height:1.6;'>"
+                f"{dspy_result.get('reasoning','No reasoning available.')}"
+                f"</div>",
+                unsafe_allow_html=True,
+            )
+
+            dspy_active = dspy_result.get("dspy_active", False)
+            mode_label = "⚡ DSPy + Mistral (live)" if dspy_active else "🟡 Heuristic (demo mode)"
+            confidence = dspy_result.get("confidence", "n/a")
+            st.caption(f"Mode: {mode_label} · Confidence: {confidence}")
+
+        with col2:
+            st.markdown("#### 🚩 Risk Flags")
+            flags = dspy_result.get("risk_flags", [])
+            urgent = dspy_result.get("urgent", False)
+
+            if urgent:
+                st.error("⚠️ Urgent — same-day clinical review recommended")
+
+            if flags:
+                for flag in flags:
+                    st.markdown(
+                        f"<span style='background:#2d1b1b;color:#ff8585;"
+                        f"padding:3px 10px;border-radius:12px;font-size:12px;"
+                        f"margin:2px;display:inline-block;'>{flag}</span>",
+                        unsafe_allow_html=True,
+                    )
             else:
-                st.warning("Purge completed with some warnings — review the audit log.")
+                st.success("No significant risk flags detected.")
 
-            # Reset session — upload_key increment forces file_uploader to remount empty
-            st.session_state.patient_id      = "patient_" + str(uuid.uuid4())[:8]
-            st.session_state.pipeline_result = None
-            st.session_state.chat_agent      = None
-            st.session_state.chat_history    = []
-            st.session_state.upload_key     += 1
-            st.rerun()
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 3 — CHAT AGENT
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_chat:
+    st.markdown("### 💬 Clinical Chat Agent")
+
+    agent = st.session_state.get(KEY_AGENT)
+    if not agent:
+        st.info("Run the video intake pipeline first to activate the chat agent.")
+    else:
+        messages = st.session_state.get(KEY_CHAT_MESSAGES, [])
+        for msg in messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+
+        if prompt := st.chat_input("Ask about this consultation…"):
+            messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+
+            with st.chat_message("assistant"):
+                with st.spinner("Thinking…"):
+                    reply = agent.chat(prompt)
+                st.markdown(reply)
+            messages.append({"role": "assistant", "content": reply})
+            st.session_state[KEY_CHAT_MESSAGES] = messages
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 4 — VOICE CHAT
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_voice:
+    agent = st.session_state.get(KEY_AGENT)
+    if not agent:
+        st.info("Run the video intake pipeline first to activate voice chat.")
+    else:
+        render_voice_chat_ui(agent)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 5 — SEMANTIC SEARCH
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_search:
+    st.markdown("### 🔍 Semantic Search")
+    st.caption("Search across all stored patient transcripts using cosine similarity (ChromaDB).")
+
+    query = st.text_input("Enter clinical query:", placeholder="e.g. patient reports chest pain")
+    n_results = st.slider("Max results", 1, 10, 3)
+
+    if st.button("Search", type="primary") and query:
+        with st.spinner("Searching embeddings…"):
+            hits = semantic_search(query, n_results=n_results)
+        if hits:
+            for i, hit in enumerate(hits, 1):
+                with st.expander(f"Result {i} — patient `{hit['metadata'].get('patient_id','?')}`"):
+                    st.write(hit["document"][:500])
+                    st.json(hit["metadata"])
+        else:
+            st.warning("No results found.")
+
+# ─────────────────────────────────────────────────────────────────────────────
+# TAB 6 — DATA DELETION (GDPR Art. 17)
+# ─────────────────────────────────────────────────────────────────────────────
+with tab_delete:
+    st.markdown("### 🗑️ Right to be Forgotten — GDPR Article 17")
+    st.warning(
+        "This action permanently deletes all data for the specified patient "
+        "from ChromaDB, uploads, frames, and transcripts directories. "
+        "This cannot be undone."
+    )
+
+    del_id = st.text_input(
+        "Patient ID to delete:",
+        value=get_patient_id(),
+        help="Defaults to the current active patient.",
+    )
+
+    confirm_del = st.checkbox("I confirm this deletion is authorised and irreversible.")
+
+    if st.button("🗑️ Execute Deletion", type="primary", disabled=not confirm_del):
+        if del_id:
+            with st.spinner(f"Purging all data for {del_id}…"):
+                ok = execute_right_to_be_forgotten(del_id)
+            if ok:
+                st.success(f"✅ COMPLIANCE_SUCCESS — all data for `{del_id}` has been purged.")
+                # If we just deleted the current patient, start a new session
+                if del_id == get_patient_id():
+                    from pipeline.session import start_new_patient
+                    start_new_patient()
+                    st.info("Current session cleared. New patient session started.")
+                    st.rerun()
+            else:
+                st.error("Deletion partially failed — check the audit log for details.")
+        else:
+            st.error("Please enter a patient ID.")
