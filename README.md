@@ -150,7 +150,7 @@ streamlit run app.py
 The LLM and DSPy components use **Mistral AI**:
 
 1. Go to [console.mistral.ai](https://console.mistral.ai)
-2. Sign up — no credit card required
+2. Sign up 
 3. Navigate to **API Keys** → **Create new key**
 4. Paste it into `.streamlit/secrets.toml`:
 
