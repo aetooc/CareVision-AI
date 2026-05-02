@@ -2,12 +2,12 @@ streamlit>=1.31
 openai-whisper
 moviepy
 opencv-python-headless
-chromadb==0.5.23
+chromadb>=0.6
 numpy<2.0
 langchain-core
 langchain-mistralai
-dspy-ai
+dspy
+litellm>=1.0
 gtts
 scikit-learn
-SpeechRecognition
 protobuf>=4.25,<5.0
