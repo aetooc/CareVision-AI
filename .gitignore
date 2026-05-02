@@ -1,2 +1,6 @@
 .streamlit/secrets.toml
 .env
+data/
+logs/
+*.wav
+*.mp4
