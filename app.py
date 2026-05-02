@@ -140,6 +140,7 @@ def _init_state():
         "pipeline_result": None,   # dict with transcript, vision, summary
         "chat_agent": None,
         "chat_history": [],
+        "upload_key": 0,           # increment to reset file_uploader widget
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -212,7 +213,12 @@ with tab_video:
 
     with col_upload:
         st.markdown('<div class="cv-card"><h3>Upload Consultation Video</h3>', unsafe_allow_html=True)
-        uploaded = st.file_uploader("Accepts MP4 files", type=["mp4"], label_visibility="collapsed")
+        uploaded = st.file_uploader(
+            "Accepts MP4 files",
+            type=["mp4"],
+            label_visibility="collapsed",
+            key=f"video_upload_{st.session_state.upload_key}",
+        )
 
         if uploaded:
             file_path = os.path.join(UPLOADS_DIR, uploaded.name)
@@ -293,7 +299,7 @@ with tab_video:
 # ════════════════════════════════════════════════════════════════════════════════
 with tab_chat:
     st.markdown("### 💬 Ask the Clinical Agent")
-    st.caption("Query the processed patient record in natural language. Powered by LangChain + Claude 3.5 Haiku.")
+    st.caption("Query the processed patient record in natural language. Powered by LangChain + Mistral.")
 
     agent: ClinicalChatAgent | None = st.session_state.chat_agent
 
@@ -400,4 +406,5 @@ Every deletion step is logged to the audit trail with a timestamp.
             st.session_state.pipeline_result = None
             st.session_state.chat_agent   = None
             st.session_state.chat_history = []
+            st.session_state.upload_key     += 1  
             st.rerun()
