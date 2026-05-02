@@ -1,30 +1,127 @@
 import os
 import re
+import traceback
 from pipeline.logging_utils import log_action
+
+# ── Debug trace collector ───────────────────────────────────────────────────────
+# Every failure point appends a structured entry here.
+# app.py can read `dspy_debug_trace` to surface the full reason in the UI.
+dspy_debug_trace: list[dict] = []
+
+def _trace(stage: str, status: str, message: str, exc: Exception | None = None) -> None:
+    """Append a structured debug entry and log it."""
+    entry = {
+        "stage":   stage,
+        "status":  status,   # "ok" | "warn" | "error"
+        "message": message,
+        "detail":  traceback.format_exc() if exc else "",
+    }
+    dspy_debug_trace.append(entry)
+    level = "ERROR" if status == "error" else "WARNING" if status == "warn" else "DSPY_ANALYSIS"
+    log_action(level, f"[{stage}] {message}")
+
+
+def get_debug_trace() -> list[dict]:
+    """Returns a copy of the accumulated debug trace for this process lifetime."""
+    return list(dspy_debug_trace)
+
+
+def clear_debug_trace() -> None:
+    """Call at the start of each run_dspy_analysis() to get a fresh trace."""
+    dspy_debug_trace.clear()
+
 
 # ── DSPy setup ─────────────────────────────────────────────────────────────────
 
-def _configure_dspy():
+def _configure_dspy() -> tuple[bool, str]:
     """
     Configures DSPy with MistralAI if key is available.
-    Returns True when a live LM is configured, False for demo/heuristic mode.
+
+    Returns:
+        (success: bool, reason: str)
+        reason explains exactly why it failed (shown in debug panel).
     """
-    api_key = os.getenv("MISTRAL_API_KEY", "")
+    # ── Step 1: API key presence ───────────────────────────────────────────────
+    api_key = os.getenv("MISTRAL_API_KEY", "").strip()
     if not api_key:
-        return False
+        reason = (
+            "MISTRAL_API_KEY is not set or is empty. "
+            "Add it to .streamlit/secrets.toml as: MISTRAL_API_KEY = \"your_key\". "
+            "Also confirm app.py copies secrets to os.environ before this module is called."
+        )
+        _trace("API_KEY_CHECK", "error", reason)
+        return False, reason
+
+    if len(api_key) < 10:
+        reason = f"MISTRAL_API_KEY looks malformed (length={len(api_key)}). Check for copy-paste errors."
+        _trace("API_KEY_CHECK", "warn", reason)
+        return False, reason
+
+    _trace("API_KEY_CHECK", "ok", f"API key present (length={len(api_key)}, prefix={api_key[:6]}…)")
+
+    # ── Step 2: Import dspy ────────────────────────────────────────────────────
     try:
         import dspy
+        _trace("DSPY_IMPORT", "ok", f"dspy imported successfully (version={getattr(dspy, '__version__', 'unknown')})")
+    except ImportError as e:
+        reason = f"Cannot import dspy: {e}. Run: pip install dspy"
+        _trace("DSPY_IMPORT", "error", reason, exc=e)
+        return False, reason
+    except Exception as e:
+        reason = f"Unexpected error importing dspy: {type(e).__name__}: {e}"
+        _trace("DSPY_IMPORT", "error", reason, exc=e)
+        return False, reason
+
+    # ── Step 3: Import litellm (dspy's transport layer) ────────────────────────
+    try:
+        import litellm
+        _trace("LITELLM_IMPORT", "ok", f"litellm imported (version={getattr(litellm, '__version__', 'unknown')})")
+    except ImportError as e:
+        reason = f"Cannot import litellm: {e}. Run: pip install litellm>=1.0"
+        _trace("LITELLM_IMPORT", "error", reason, exc=e)
+        return False, reason
+    except Exception as e:
+        reason = f"Unexpected error importing litellm: {type(e).__name__}: {e}"
+        _trace("LITELLM_IMPORT", "error", reason, exc=e)
+        return False, reason
+
+    # ── Step 4: Instantiate dspy.LM ───────────────────────────────────────────
+    try:
         lm = dspy.LM(
             model="mistral/mistral-small-latest",
             api_key=api_key,
             temperature=0.2,
             max_tokens=512,
         )
-        dspy.configure(lm=lm)
-        return True
+        _trace("DSPY_LM_INIT", "ok", "dspy.LM instantiated with mistral/mistral-small-latest")
+    except TypeError as e:
+        reason = (
+            f"dspy.LM() raised TypeError: {e}. "
+            "This usually means your dspy version has a different constructor signature. "
+            f"dspy version: {getattr(dspy, '__version__', 'unknown')}. "
+            "Try: pip install --upgrade dspy"
+        )
+        _trace("DSPY_LM_INIT", "error", reason, exc=e)
+        return False, reason
     except Exception as e:
-        log_action("WARNING", f"DSPy configuration failed: {e}")
-        return False
+        reason = (
+            f"dspy.LM() failed with {type(e).__name__}: {e}. "
+            "Possible causes: invalid model string, network blocked on Streamlit Cloud, "
+            "or litellm/mistral provider issue."
+        )
+        _trace("DSPY_LM_INIT", "error", reason, exc=e)
+        return False, reason
+
+    # ── Step 5: dspy.configure ────────────────────────────────────────────────
+    try:
+        dspy.configure(lm=lm)
+        _trace("DSPY_CONFIGURE", "ok", "dspy.configure(lm=...) succeeded")
+    except Exception as e:
+        reason = f"dspy.configure() failed: {type(e).__name__}: {e}"
+        _trace("DSPY_CONFIGURE", "error", reason, exc=e)
+        return False, reason
+
+    return True, "DSPy configured successfully with Mistral."
 
 
 # ── Signatures ─────────────────────────────────────────────────────────────────
@@ -81,8 +178,8 @@ _MEDIUM_RISK_KEYWORDS = [
     "anxious", "anxiety", "depressed", "depression",
 ]
 
-def _heuristic_severity(transcript: str) -> dict:
-    """Rule-based fallback when no API key is present."""
+def _heuristic_severity(transcript: str, fallback_reason: str = "") -> dict:
+    """Rule-based fallback when no API key is present or DSPy fails."""
     lower = transcript.lower()
     if any(kw in lower for kw in _HIGH_RISK_KEYWORDS):
         severity, priority = "high", "Same-day clinical review recommended."
@@ -101,6 +198,9 @@ def _heuristic_severity(transcript: str) -> dict:
         "urgent": "yes" if severity in ("high", "critical") else "no",
         "confidence": "low",
         "dspy_active": False,
+        # ── Debug fields ──────────────────────────────────────────────────────
+        "debug_fallback_reason": fallback_reason,
+        "debug_trace": get_debug_trace(),
     }
 
 
@@ -111,18 +211,23 @@ def run_dspy_analysis(transcript: str, vision_analysis: dict) -> dict:
     Main entry point. Runs both DSPy modules (or heuristic fallback) and
     returns a unified dict consumed by app.py for display.
 
-    Args:
-        transcript:      Full Whisper transcript string.
-        vision_analysis: Dict from process_video_frames() — needs
-                         'visual_flags' and 'posture_assessment' keys.
-
-    Returns dict with keys:
-        severity, reasoning, triage_priority,
-        risk_flags (list), urgent (bool), confidence, dspy_active (bool)
+    The returned dict now always contains:
+        debug_fallback_reason  — human-readable explanation of why demo mode was used
+        debug_trace            — list of structured stage entries for the UI debug panel
     """
+    clear_debug_trace()
+
+    # ── Guard: transcript too short ────────────────────────────────────────────
     if not transcript or len(transcript.strip()) < 10:
+        reason = (
+            f"Transcript too short ({len((transcript or '').strip())} chars). "
+            "DSPy analysis skipped — check Whisper output."
+        )
+        _trace("TRANSCRIPT_CHECK", "error", reason)
         log_action("DSPY_ANALYSIS", "Transcript too short — skipping DSPy analysis.")
-        return _heuristic_severity(transcript or "")
+        return _heuristic_severity(transcript or "", fallback_reason=reason)
+
+    _trace("TRANSCRIPT_CHECK", "ok", f"Transcript length OK ({len(transcript)} chars)")
 
     visual_obs = (
         vision_analysis.get("visual_flags", "No visual data.")
@@ -130,55 +235,94 @@ def run_dspy_analysis(transcript: str, vision_analysis: dict) -> dict:
         + vision_analysis.get("posture_assessment", "")
     ).strip()
 
-    live = _configure_dspy()
+    # ── Configure DSPy ─────────────────────────────────────────────────────────
+    live, config_reason = _configure_dspy()
 
     if not live:
-        result = _heuristic_severity(transcript)
-        log_action("DSPY_ANALYSIS", "Demo mode — heuristic severity used.")
-        return result
+        log_action("DSPY_ANALYSIS", f"Demo mode — {config_reason}")
+        return _heuristic_severity(transcript, fallback_reason=config_reason)
+
+    # ── Run ChainOfThought severity module ─────────────────────────────────────
+    try:
+        severity_mod = _get_severity_module()
+        _trace("SEVERITY_MODULE_INIT", "ok", "ChainOfThought(SeveritySignature) instantiated")
+    except Exception as e:
+        reason = f"Failed to instantiate ChainOfThought severity module: {type(e).__name__}: {e}"
+        _trace("SEVERITY_MODULE_INIT", "error", reason, exc=e)
+        log_action("ERROR", reason, status="FAILED")
+        return _heuristic_severity(transcript, fallback_reason=reason)
 
     try:
-        # Module 1: ChainOfThought severity
-        severity_mod = _get_severity_module()
         sev_result = severity_mod(
-            transcript=transcript[:1500],   # token-safe truncation
+            transcript=transcript[:1500],
             visual_observations=visual_obs[:500],
         )
-
-        # Module 2: Predict risk flags
-        risk_mod = _get_risk_module()
-        risk_result = risk_mod(transcript=transcript[:1500])
-
-        # Parse risk_flags string → list
-        raw_flags = risk_result.risk_flags or "none"
-        flags_list = (
-            [f.strip() for f in raw_flags.split(",") if f.strip().lower() != "none"]
-            if raw_flags.lower() != "none"
-            else []
-        )
-
-        output = {
-            "severity": sev_result.severity.strip().lower(),
-            "reasoning": sev_result.reasoning.strip(),
-            "triage_priority": sev_result.triage_priority.strip(),
-            "risk_flags": flags_list,
-            "urgent": risk_result.urgent.strip().lower() == "yes",
-            "confidence": risk_result.confidence.strip().lower(),
-            "dspy_active": True,
-        }
-
-        log_action(
-            "DSPY_ANALYSIS",
-            f"DSPy ChainOfThought complete. Severity={output['severity']}, "
-            f"Urgent={output['urgent']}, Flags={len(flags_list)}.",
-        )
-        return output
-
+        _trace("SEVERITY_MODULE_CALL", "ok",
+               f"Severity result: {sev_result.severity!r} | priority: {sev_result.triage_priority!r}")
     except Exception as e:
-        log_action("ERROR", f"DSPy pipeline failed, falling back to heuristic: {e}", status="FAILED")
-        result = _heuristic_severity(transcript)
-        result["dspy_active"] = False
-        return result
+        reason = (
+            f"ChainOfThought severity call failed: {type(e).__name__}: {e}. "
+            "Possible causes: Mistral API rate limit, auth error, or malformed response from dspy."
+        )
+        _trace("SEVERITY_MODULE_CALL", "error", reason, exc=e)
+        log_action("ERROR", reason, status="FAILED")
+        return _heuristic_severity(transcript, fallback_reason=reason)
+
+    # ── Run Predict risk-flag module ───────────────────────────────────────────
+    try:
+        risk_mod = _get_risk_module()
+        _trace("RISK_MODULE_INIT", "ok", "Predict(RiskSignature) instantiated")
+    except Exception as e:
+        reason = f"Failed to instantiate Predict risk module: {type(e).__name__}: {e}"
+        _trace("RISK_MODULE_INIT", "error", reason, exc=e)
+        log_action("ERROR", reason, status="FAILED")
+        return _heuristic_severity(transcript, fallback_reason=reason)
+
+    try:
+        risk_result = risk_mod(transcript=transcript[:1500])
+        _trace("RISK_MODULE_CALL", "ok",
+               f"Risk flags: {risk_result.risk_flags!r} | urgent: {risk_result.urgent!r}")
+    except Exception as e:
+        reason = (
+            f"Predict risk-flag call failed: {type(e).__name__}: {e}. "
+            "Possible causes: Mistral API error or dspy output parsing failure."
+        )
+        _trace("RISK_MODULE_CALL", "error", reason, exc=e)
+        log_action("ERROR", reason, status="FAILED")
+        return _heuristic_severity(transcript, fallback_reason=reason)
+
+    # ── Parse & assemble output ────────────────────────────────────────────────
+    raw_flags = risk_result.risk_flags or "none"
+    flags_list = (
+        [f.strip() for f in raw_flags.split(",") if f.strip().lower() != "none"]
+        if raw_flags.lower() != "none"
+        else []
+    )
+
+    output = {
+        "severity":          sev_result.severity.strip().lower(),
+        "reasoning":         sev_result.reasoning.strip(),
+        "triage_priority":   sev_result.triage_priority.strip(),
+        "risk_flags":        flags_list,
+        "urgent":            risk_result.urgent.strip().lower() == "yes",
+        "confidence":        risk_result.confidence.strip().lower(),
+        "dspy_active":       True,
+        # Debug fields (empty when everything succeeds)
+        "debug_fallback_reason": "",
+        "debug_trace":           get_debug_trace(),
+    }
+
+    _trace("PIPELINE_COMPLETE", "ok",
+           f"DSPy pipeline done. severity={output['severity']}, urgent={output['urgent']}, "
+           f"flags={len(flags_list)}")
+    output["debug_trace"] = get_debug_trace()   # refresh with final entry
+
+    log_action(
+        "DSPY_ANALYSIS",
+        f"DSPy ChainOfThought complete. Severity={output['severity']}, "
+        f"Urgent={output['urgent']}, Flags={len(flags_list)}.",
+    )
+    return output
 
 
 def format_severity_badge(severity: str) -> tuple[str, str]:
