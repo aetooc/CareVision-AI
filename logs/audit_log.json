@@ -2944,5 +2944,23 @@
     "action_type": "DATA_VALIDATION",
     "status": "SUCCESS",
     "details": "All checks passed \u2014 transcript=123 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:19.082518",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:25.098483",
+    "action_type": "DSPY_ANALYSIS",
+    "status": "SUCCESS",
+    "details": "DSPy ChainOfThought complete. Severity=critical, Urgent=True, Flags=2."
+  },
+  {
+    "timestamp": "2026-05-02T16:56:27.153377",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_3fbf3025)."
   }
 ]
