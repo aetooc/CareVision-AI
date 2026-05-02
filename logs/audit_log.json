@@ -1678,5 +1678,809 @@
     "action_type": "COMPLIANCE_SUCCESS",
     "status": "SUCCESS",
     "details": "Right-to-be-Forgotten executed for patient patient_96fd4e4d."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:01.145648",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T14:37:01.653947",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:09.546576",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:12.696369",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:13.035222",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:13.066674",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:14.916205",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:16.962057",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_f26ddc65)."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:24.462863",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:39.767595",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 33 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:40.410034",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:37:41.124201",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 49 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:38:01.471355",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T14:38:48.854101",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T14:38:49.299941",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T14:38:54.117205",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:38:57.000190",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T14:38:57.271273",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:03.347320",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:14.032163",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T14:40:14.546091",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:19.629480",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:22.500538",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:22.730004",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:22.749583",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:24.025567",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:24.352795",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_ed6ae1e1)."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:37.051452",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:51.103559",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 8 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:52.019679",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:40:52.913647",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 45 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:05.921794",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 2 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:18.016933",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Vector embeddings removed for patient patient_ed6ae1e1."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:18.029646",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/uploads/."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:18.050866",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/transcripts/."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:18.074788",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "All files purged from /data/frames/."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:18.094925",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right-to-be-Forgotten executed for patient patient_ed6ae1e1."
+  },
+  {
+    "timestamp": "2026-05-02T14:41:24.617210",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:15.519730",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T14:49:16.157521",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:24.768802",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:27.814713",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:28.069630",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:28.099245",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:30.001838",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:32.025400",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_6c4b3079)."
+  },
+  {
+    "timestamp": "2026-05-02T14:49:48.606755",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:00.876628",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 8 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:01.480368",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:02.187625",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 63 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:17.908280",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 8 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:18.444054",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 3 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:50:19.151592",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 63 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:51:34.283772",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:03.347281",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T14:52:03.815043",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:08.702277",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:11.355566",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:11.625848",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:11.652453",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:13.038107",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T14:52:13.360534",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_efea7489)."
+  },
+  {
+    "timestamp": "2026-05-02T14:53:00.699235",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:53:12.396071",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 5 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:53:13.004079",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:53:14.558265",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 111 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:54:52.753149",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 8 chars."
+  },
+  {
+    "timestamp": "2026-05-02T14:54:53.481571",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 3 answered."
+  },
+  {
+    "timestamp": "2026-05-02T14:54:56.201059",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 112 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T14:55:06.260544",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 2 results for query."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:14.399950",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T15:14:14.941095",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:23.573931",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:26.482624",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:26.802746",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:26.824869",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:29.923087",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:31.911029",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_47504f28)."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:47.299787",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:59.185314",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 6 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:14:59.722225",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:15:02.605231",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 129 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T15:15:53.563449",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp2.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T15:15:54.039108",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T15:15:58.793919",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 123 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:01.032436",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:01.298676",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=144.0, faces=2.38, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:01.318639",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=123 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:02.921332",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:03.245826",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_1cadf38c)."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:29.757236",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:46.013907",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 27 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:46.642804",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:16:48.981485",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 140 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T15:18:02.660320",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Vector embeddings removed for patient patient_1cadf38c."
+  },
+  {
+    "timestamp": "2026-05-02T15:18:02.672345",
+    "action_type": "WARNING",
+    "status": "SUCCESS",
+    "details": "No video_filename in metadata for patient_1cadf38c. Upload file not deleted \u2014 re-process and delete again, or remove manually."
+  },
+  {
+    "timestamp": "2026-05-02T15:18:02.695627",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Purged 2 file(s) from /data/transcripts/."
+  },
+  {
+    "timestamp": "2026-05-02T15:18:02.719288",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Purged 8 file(s) from /data/frames/."
+  },
+  {
+    "timestamp": "2026-05-02T15:18:02.737216",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right-to-be-Forgotten executed for patient patient_1cadf38c."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:11.876808",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp_.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T15:30:12.337048",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:20.089341",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 131 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:23.553152",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:23.982273",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=122.4, faces=1.75, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:24.020918",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=131 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:26.443599",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:28.371982",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_7bc55b9c)."
+  },
+  {
+    "timestamp": "2026-05-02T15:30:44.364784",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:05.534192",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 45 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:07.919033",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:27.563695",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 27 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:28.159922",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 3 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:31.527532",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 115 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:34.292146",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 953 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T15:31:59.513574",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:34.348809",
+    "action_type": "PIPELINE_START",
+    "status": "SUCCESS",
+    "details": "Processing video: mp2.mp4"
+  },
+  {
+    "timestamp": "2026-05-02T15:32:34.795350",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Audio track extracted from video successfully."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:39.522497",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Whisper transcription complete. Language: en, Length: 123 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:42.401183",
+    "action_type": "DATA_EXTRACTION",
+    "status": "SUCCESS",
+    "details": "Extracted 8 frames at 1 FPS (video: 8.0s)."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:42.739327",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Frame analysis complete. Avg brightness=144.0, faces=2.38, anomalies=1."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:42.772112",
+    "action_type": "DATA_VALIDATION",
+    "status": "SUCCESS",
+    "details": "All checks passed \u2014 transcript=123 chars, frames=8, audio=1,411,278 bytes."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:44.511207",
+    "action_type": "AI_PROCESSING",
+    "status": "SUCCESS",
+    "details": "Mistral produced clinical JSON via LangChain LCEL."
+  },
+  {
+    "timestamp": "2026-05-02T15:32:44.830561",
+    "action_type": "DATA_STORAGE",
+    "status": "SUCCESS",
+    "details": "Transcript upserted in ChromaDB (id=doc_patient_ad5d270a)."
+  },
+  {
+    "timestamp": "2026-05-02T15:33:31.023755",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 1 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:33:52.173900",
+    "action_type": "VOICE_STT",
+    "status": "SUCCESS",
+    "details": "Voice input transcribed: 27 chars."
+  },
+  {
+    "timestamp": "2026-05-02T15:33:52.875284",
+    "action_type": "CHAT_AGENT",
+    "status": "SUCCESS",
+    "details": "Turn 2 answered."
+  },
+  {
+    "timestamp": "2026-05-02T15:33:55.102511",
+    "action_type": "VOICE_TTS",
+    "status": "SUCCESS",
+    "details": "Synthesized 118 chars \u2192 MP3 (en)."
+  },
+  {
+    "timestamp": "2026-05-02T15:34:15.238063",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 2 results."
+  },
+  {
+    "timestamp": "2026-05-02T15:34:52.341055",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "ChromaDB embedding removed for patient_ad5d270a."
+  },
+  {
+    "timestamp": "2026-05-02T15:34:52.354542",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Deleted data/uploads/patient_ad5d270a/"
+  },
+  {
+    "timestamp": "2026-05-02T15:34:52.380632",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Deleted data/frames/patient_ad5d270a/"
+  },
+  {
+    "timestamp": "2026-05-02T15:34:52.400638",
+    "action_type": "DATA_DELETION",
+    "status": "SUCCESS",
+    "details": "Deleted data/transcripts/patient_ad5d270a/"
+  },
+  {
+    "timestamp": "2026-05-02T15:34:52.418300",
+    "action_type": "COMPLIANCE_SUCCESS",
+    "status": "SUCCESS",
+    "details": "Right-to-be-Forgotten complete for patient patient_ad5d270a."
+  },
+  {
+    "timestamp": "2026-05-02T15:35:09.497056",
+    "action_type": "DATA_QUERY",
+    "status": "SUCCESS",
+    "details": "Semantic search returned 1 results."
   }
 ]

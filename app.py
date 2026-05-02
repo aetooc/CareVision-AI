@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import os
 import json
@@ -9,22 +7,16 @@ from pipeline.audio import process_audio
 from pipeline.video import process_video_frames
 from pipeline.validation import validate_data
 from pipeline.agent import generate_clinical_summary, ClinicalChatAgent
-from pipeline.storage import store_embeddings, semantic_search, execute_right_to_be_forgotten
+from pipeline.storage import get_patient_dirs, store_embeddings, semantic_search, execute_right_to_be_forgotten
 from pipeline.logging_utils import log_action
 from pipeline.voice import render_voice_chat_ui
 
-st.write("KEY FOUND:", bool(os.environ.get("MISTRAL_API_KEY")))
 # ── Paths ──────────────────────────────────────────────────────────────────────
-BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR      = os.path.join(BASE_DIR, "data")
-UPLOADS_DIR   = os.path.join(DATA_DIR, "uploads")
-TRANSCRIPTS_DIR = os.path.join(DATA_DIR, "transcripts")
-FRAMES_DIR    = os.path.join(DATA_DIR, "frames")
-LOGS_DIR      = os.path.join(BASE_DIR, "logs")
+BASE_DIR       = os.path.dirname(os.path.abspath(__file__))
+LOGS_DIR       = os.path.join(BASE_DIR, "logs")
 AUDIT_LOG_FILE = os.path.join(LOGS_DIR, "audit_log.json")
 
-for d in [UPLOADS_DIR, TRANSCRIPTS_DIR, FRAMES_DIR, LOGS_DIR]:
-    os.makedirs(d, exist_ok=True)
+os.makedirs(LOGS_DIR, exist_ok=True)
 
 if not os.path.exists(AUDIT_LOG_FILE):
     with open(AUDIT_LOG_FILE, "w") as f:
@@ -137,10 +129,10 @@ html, body, [class*="css"] { font-family: 'DM Sans', sans-serif; color: var(--te
 def _init_state():
     defaults = {
         "patient_id": "patient_" + str(uuid.uuid4())[:8],
-        "pipeline_result": None,   # dict with transcript, vision, summary
+        "pipeline_result": None,
         "chat_agent": None,
         "chat_history": [],
-        "upload_key": 0,           # increment to reset file_uploader widget
+        "upload_key": 0,           # increment to reset the file_uploader widget
     }
     for k, v in defaults.items():
         if k not in st.session_state:
@@ -221,7 +213,9 @@ with tab_video:
         )
 
         if uploaded:
-            file_path = os.path.join(UPLOADS_DIR, uploaded.name)
+            # Resolve this patient's own directories (creates them if needed)
+            patient_dirs = get_patient_dirs(st.session_state.patient_id)
+            file_path = os.path.join(patient_dirs["uploads"], uploaded.name)
             with open(file_path, "wb") as f:
                 f.write(uploaded.getbuffer())
             st.video(file_path)
@@ -232,14 +226,14 @@ with tab_video:
 
                 with st.status("Running multimodal pipeline…", expanded=True) as status:
                     st.write("🎙️ Extracting & transcribing audio (Whisper)…")
-                    transcript = process_audio(file_path, TRANSCRIPTS_DIR)
+                    transcript = process_audio(file_path, patient_dirs["transcripts"])
 
                     st.write("🎞️ Extracting frames & running vision analysis (OpenCV + scikit-learn)…")
-                    vision = process_video_frames(file_path, FRAMES_DIR)
+                    vision = process_video_frames(file_path, patient_dirs["frames"])
 
                     st.write("✅ Validating data quality…")
-                    audio_path = os.path.join(TRANSCRIPTS_DIR, "extracted_audio.wav")
-                    is_valid = validate_data(transcript, FRAMES_DIR, audio_path)
+                    audio_path = os.path.join(patient_dirs["transcripts"], "extracted_audio.wav")
+                    is_valid = validate_data(transcript, patient_dirs["frames"], audio_path)
 
                     if is_valid:
                         st.write("🦜 LangChain agent generating clinical summary…")
@@ -247,15 +241,21 @@ with tab_video:
                         store_embeddings(
                             st.session_state.patient_id,
                             transcript,
-                            {"frames": vision.get("frames_analyzed", 0)},
+                            {
+                                "frames": vision.get("frames_analyzed", 0),
+                                "video_filename": uploaded.name,
+                            },
                         )
                         st.session_state.pipeline_result = {
                             "transcript": transcript,
                             "vision": vision,
                             "summary": summary,
                         }
-                        # Prime the chat agent with full context
-                        context = f"Transcript:\n{transcript}\n\nVision:\n{json.dumps(vision, indent=2)}\n\nSummary:\n{json.dumps(summary, indent=2)}"
+                        context = (
+                            f"Transcript:\n{transcript}\n\n"
+                            f"Vision:\n{json.dumps(vision, indent=2)}\n\n"
+                            f"Summary:\n{json.dumps(summary, indent=2)}"
+                        )
                         st.session_state.chat_agent = ClinicalChatAgent(context)
                         status.update(label="Pipeline complete ✓", state="complete")
                     else:
@@ -401,10 +401,10 @@ Every deletion step is logged to the audit trail with a timestamp.
             else:
                 st.warning("Purge completed with some warnings — review the audit log.")
 
-            # Reset session
-            st.session_state.patient_id   = "patient_" + str(uuid.uuid4())[:8]
+            # Reset session — upload_key increment forces file_uploader to remount empty
+            st.session_state.patient_id      = "patient_" + str(uuid.uuid4())[:8]
             st.session_state.pipeline_result = None
-            st.session_state.chat_agent   = None
-            st.session_state.chat_history = []
-            st.session_state.upload_key     += 1  
+            st.session_state.chat_agent      = None
+            st.session_state.chat_history    = []
+            st.session_state.upload_key     += 1
             st.rerun()
