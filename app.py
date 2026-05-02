@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="CareVision AI",
     page_icon="🏥",
     layout="wide",
-    initial_sidebar_state="expa nded",
+    initial_sidebar_state="expanded",
 )
 
 
