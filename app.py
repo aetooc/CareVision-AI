@@ -11,7 +11,9 @@ from pipeline.validation import validate_data
 from pipeline.agent import generate_clinical_summary, ClinicalChatAgent
 from pipeline.storage import store_embeddings, semantic_search, execute_right_to_be_forgotten
 from pipeline.logging_utils import log_action
-st.write("KEY FOUND:", bool(os.environ.get("GOOGLE_API_KEY")))
+from pipeline.voice import render_voice_chat_ui
+
+st.write("KEY FOUND:", bool(os.environ.get("MISTRAL_API_KEY")))
 # ── Paths ──────────────────────────────────────────────────────────────────────
 BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR      = os.path.join(BASE_DIR, "data")
@@ -193,9 +195,10 @@ with st.sidebar:
 """)
 
 # ── Tabs ───────────────────────────────────────────────────────────────────────
-tab_video, tab_chat, tab_search, tab_delete = st.tabs([
+tab_video, tab_chat, tab_voice, tab_search, tab_delete = st.tabs([
     "📹 Video Intake",
     "💬 Chat Agent",
+    "🎙️ Voice Chat",
     "🔍 Semantic Search",
     "🗑️  Data Deletion",
 ])
@@ -324,6 +327,14 @@ with tab_chat:
                     reply = agent.chat(q)
                     st.session_state.chat_history.append({"human": q, "ai": reply})
                     st.rerun()
+
+
+with tab_voice:
+    agent_for_voice: ClinicalChatAgent | None = st.session_state.chat_agent
+    if agent_for_voice is None:
+        st.info("Process a video first to activate voice chat.")
+    else:
+        render_voice_chat_ui(agent_for_voice)
 
 
 # ════════════════════════════════════════════════════════════════════════════════
