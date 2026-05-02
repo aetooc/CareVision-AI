@@ -2,13 +2,12 @@ streamlit>=1.31
 openai-whisper
 moviepy
 opencv-python-headless
-chromadb==0.4.24
+chromadb==0.5.23
+numpy<2.0
 langchain-core
 langchain-mistralai
 dspy-ai
 gtts
 scikit-learn
 SpeechRecognition
-protobuf==3.20.3
-opentelemetry-sdk==1.20.0
-opentelemetry-exporter-otlp-proto-grpc==1.20.0
+protobuf>=4.25,<5.0
