@@ -106,7 +106,7 @@ st.markdown(
         <div>
           <h1 style="margin:0;color:#ffffff;font-size:2rem;">🏥 CareVision AI</h1>
           <p style="margin:4px 0 0;color:#a8d8d8;font-size:0.95rem;">
-            Privacy-preserving multimodal clinical pipeline · DEEM Lab, Berlin
+            Privacy-preserving multimodal clinical pipeline
           </p>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
